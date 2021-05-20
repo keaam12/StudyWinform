@@ -47,6 +47,7 @@ namespace Winform
             this.BtnLogin.TabIndex = 0;
             this.BtnLogin.Text = "로그인";
             this.BtnLogin.UseVisualStyleBackColor = true;
+            this.BtnLogin.Click += new System.EventHandler(this.BtnLogin_Click);
             // 
             // UserID
             // 
@@ -90,7 +91,7 @@ namespace Winform
             this.BtnPW.UseVisualStyleBackColor = true;
             this.BtnPW.Click += new System.EventHandler(this.BtnPW_Click);
             // 
-            // Form1
+            // FM_Login
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -101,7 +102,7 @@ namespace Winform
             this.Controls.Add(this.UserID);
             this.Controls.Add(this.BtnPW);
             this.Controls.Add(this.BtnLogin);
-            this.Name = "Form1";
+            this.Name = "FM_Login";
             this.Text = "Form1";
             this.ResumeLayout(false);
             this.PerformLayout();

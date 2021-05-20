@@ -70,19 +70,31 @@ namespace Winform
             }
             /*
             3. 이전 비밀번호가 일치하는지 확인 */
-            
-            
-            
+
+
+
             if (DtTemp.Rows[0]["PW"].ToString() != sPerPw)
             {
                 MessageBox.Show("이전 비밀번호가 일치하지 않습니다.");
                 return;
             }
 
+            /*
+            4. 바뀔 비밀번호로 등록   */
 
+            else if (MessageBox.Show("해당 비밀번호로 변경 하시겠습니까?", "비밀번호 변경", MessageBoxButtons.YesNo) == DialogResult.No)
+                return;
+
+            Tran = Connect.BeginTransaction("TEST_Tran"); // 트랜잭션 선언
+            cmd.Transaction = Tran; // 커맨드에 트랜잭션 사용여부 등록
+            cmd.Connection = Connect; // 커맨드에 접속 정보 입력
+            cmd.CommandText = "UPDATE TB_USER_HGU SET PW = '" + sNewPw + "' WHERE USERID ='" + sLoinid + "'";
+            cmd.ExecuteNonQuery(); // C,U,D 실행 함수 실행
+
+            Tran.Commit(); // 변경 내용 승인
+            MessageBox.Show("정상적으로 변경 하였습니다.");
 
             /*
-            4. 바뀔 비밀번호로 등록
             5. 변경여부 메세지 처리 ===> 데이터관리가 목적
              */
         }
